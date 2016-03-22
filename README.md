@@ -8,6 +8,7 @@ If you don't know about Kaa, check out their home page: http://www.kaaproject.or
 ## Installation requirements
 
 We suggest you first checkout Kaa's official installation guide before using this image:
+
 -> http://docs.kaaproject.org/display/KAA/Installation+guide
 
 In order to use this image, you will still need to provide the following dependencies:
@@ -19,6 +20,8 @@ In order to use this image, you will still need to provide the following depende
 Note that we have not tested this image with Cassandra; contributions via pull-requests are highly appreciated.
 
 ## Quick run
+
+0. Download Kaa's debian packages at: http://www.kaaproject.org/download-kaa/ and place them inside 'install/deb/'
 
 1. Run PostgreSQL, Zookeeper and MongoDB/Cassandra
 
@@ -43,5 +46,5 @@ This image was originally written to ease deployment and testing. If you find an
 
 
 --
-Maintainer: Christopher Burroughs
-Lead software engineer & architect at xMight Inc., an IoT startup.
+Maintainer: Christopher Burroughs,
+lead software engineer & architect at xMight Inc., an IoT startup.
