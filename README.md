@@ -3,6 +3,8 @@ Greetings,
 Thanks for checking out this repository. You will find here an easy-to-use Docker image to launch a single-node Kaa server in just a few clicks.
 If you don't know about Kaa, check out their home page: http://www.kaaproject.org.
 
+![](http://www.kaaproject.org/wp-content/themes/jupiter/images/logo-kaa-with-eyebrows-01.svg?cd593a)
+
 "Kaa is a feature-rich, open-source IoT middleware platform for rapid development of the Internet of Things solutions, IoT applications, and smart products."
 
 ## Installation requirements
