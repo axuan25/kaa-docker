@@ -9,6 +9,8 @@ RUN apt-get update && apt-get -yqq install \
 		inetutils-ping \
 		iptables-persistent \
 		ca-certificates \
+		curl \
+		wget \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 

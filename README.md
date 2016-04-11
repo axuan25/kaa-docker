@@ -27,9 +27,9 @@ Note that we have not tested this image with Cassandra; contributions via pull-r
 
 2. Build this image (build.sh for your convenience)
 
-2. Write up a Docker environment file to configure your server, see example-env.dockerenv. (Don't expose sensitive data in your command line!)
+3. Write up a Docker environment file to configure your server, see example-env.dockerenv. (Don't expose sensitive data in your command line!)
 
-3. Run image, use 'docker-run-kaa-0.8.sh' for convenience (don't forget to edit the env file parameter).
+4. Run image, use 'docker-run-kaa-0.8.sh' for convenience (don't forget to edit the env file parameter).
 
 ## Logs
 
