@@ -11,6 +11,10 @@ RUN apt-get update && apt-get -yqq install \
 		ca-certificates \
 		curl \
 		wget \
+		rsync \
+		gcc \
+		cmake \
+		maven \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -43,7 +47,10 @@ COPY kaa/ /kaa
 # Kaa config template files
 COPY install/conf/ /usr/lib/kaa-node/conf/
 
-EXPOSE 8080 9888 9889 9997 9999
+EXPOSE 8080 9888 9889 9997 9999 25 20
 VOLUME ["/var/log/kaa", "/usr/lib/kaa-node/conf"]
+
+# Make kaa sudoer
+RUN sudo echo 'kaa     ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 ENTRYPOINT ["/kaa/container-start.sh"]

@@ -1,5 +1,5 @@
 # specify hibernate sql dialect
-hibernate_dialect=org.hibernate.dialect.PostgreSQL82Dialect
+hibernate_dialect=org.hibernate.dialect.MySQL5InnoDBDialect
 
 # specify if hibernate will format sql request
 hibernate_format_sql=false
@@ -11,7 +11,7 @@ hibernate_show_sql=false
 hibernate_hbm2ddl_auto=update
 
 # specify jdbc driver class
-jdbc_driver_className=org.postgresql.Driver
+jdbc_driver_className=org.mariadb.jdbc.Driver
 
 # specify jdbc database user name
 jdbc_username={{JDBC_USERNAME}}
