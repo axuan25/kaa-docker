@@ -13,25 +13,25 @@ We suggest you first checkout Kaa's official installation guide before using thi
 
 -> http://docs.kaaproject.org/display/KAA/Installation+guide
 
-In order to use this image, you will still need to provide the following dependencies:
+In order to use this image, you will need to provide the following:
 
-- PostgreSQL 9.4
 - Zookeeper 3.4.5
+- PostgreSQL 9.4 OR MariaDB 5.5 <b>(0.9+ only!)</b>
 - MongoDB 2.6.9 OR Cassandra 2.2.5
 
-Note that we have not tested this image with Cassandra; contributions via pull-requests are highly appreciated.
+Note that we have not tested this image with Cassandra, but environment variables are all available. Contributions via pull-requests are highly appreciated!
 
 ## Quick run
 
 0. Download Kaa's debian packages at: http://www.kaaproject.org/download-kaa/ and place them inside 'install/deb/'
 
-1. Run PostgreSQL, Zookeeper and MongoDB/Cassandra
+1. Run PostgreSQL/MariaDB, Zookeeper and MongoDB/Cassandra
 
 2. Build this image (build.sh for your convenience)
 
 3. Write up a Docker environment file to configure your server, see example-env.dockerenv. (Don't expose sensitive data in your command line!)
 
-4. Run image, use 'docker-run-kaa-0.8.sh' for convenience (don't forget to edit the env file parameter).
+4. Run image, link the containers your preferred way (docker network works great!). See 'docker-run-kaa-0.9.sh' for an example.
 
 ## Logs
 
