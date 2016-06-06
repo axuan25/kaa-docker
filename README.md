@@ -21,17 +21,51 @@ In order to use this image, you will need to provide the following:
 
 Note that we have not tested this image with Cassandra, but environment variables are all available. Contributions via pull-requests are highly appreciated!
 
-## Quick run
+## Get the image
+
+<b>Docker hub -></b> 
+
+cburr25/kaa:0.9.0
+
+<b>Docker build -></b>
 
 0. Download Kaa's debian packages at: http://www.kaaproject.org/download-kaa/ and place them inside 'install/deb/'
 
-1. Run PostgreSQL/MariaDB, Zookeeper and MongoDB/Cassandra
+1. Build this image (build.sh for your convenience)
 
-2. Build this image (build.sh for your convenience)
+## Quick run
 
-3. Write up a Docker environment file to configure your server, see example-env.dockerenv. (Don't expose sensitive data in your command line!)
+1. Run Zookeeper, MariaDB/PostgreSQL and MongoDB/Cassandra
 
-4. Run image, link the containers your preferred way (docker network works great!). See 'docker-run-kaa-0.9.sh' for an example.
+2. Write up a Docker environment file to configure your server, see example-env.dockerenv. Some available environment variables are:
+
+|     VARIABLE                	|   DEFAULT
+| -----------------------------	|------------- 
+| ZOOKEEPER_HOST				| localhost
+| ZOOKEEPER_PORT				| 2181
+| 								| 
+| JDBC_HOST						| localhost
+| JDBC_PORT						| 3306
+| JDBC_USERNAME					| sqladmin
+| JDBC_PASSWORD					| admin
+| JDBC_DB_NAME					| kaa
+								| 
+| CASSANDRA_CLUSTER_NAME		| Kaa Cluster
+| CASSANDRA_KEYSPACE_NAME		| kaa
+| CASSANDRA_NODE_LIST			| localhost:9042
+| CASSANDRA_USE_SSL				| false
+| CASSANDRA_USE_JMX				| true
+| CASSANDRA_USE_CREDENTIALS		| false
+| CASSANDRA_USERNAME 			| (empty)
+| CASSANDRA_PASSWORD 			| (empty)
+| 								| 
+| MONGODB_NODE_LIST 			| localhost:27017
+| MONGODB_DB_NAME				| kaa
+| MONGODB_WRITE_CONCERN 		| acknowledged
+| 								| 
+| NOSQL_DB_PROVIDER_NAME		| mongodb
+
+3. Run this image, link the containers however you want. <i>See 'docker-run-kaa-0.9.sh' for an example.</i>
 
 ## Logs
 
@@ -41,7 +75,6 @@ $ docker exec <container-name> tail -f /var/log/kaa/kaa-node.log
 
 Or simply run the shortcut script 'view-kaa-node-logs.sh' !
 
-
 ## Notes
 
 This image was originally written to ease deployment and testing. If you find any bugs or misplaced stuff, help us tidy-up with a pull request!
@@ -49,4 +82,4 @@ This image was originally written to ease deployment and testing. If you find an
 
 --
 Maintainer: Christopher Burroughs,
-lead software engineer & architect at xMight Inc., an IoT startup.
+lead software engineer & architect at xMight Inc., an energy management IoT startup.
