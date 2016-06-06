@@ -1,6 +1,9 @@
 #!/bin/bash
 
-. /kaa/configure-kaa.sh
-. /kaa/service-start.sh &&
+touch /var/log/kaa/kaa-node.log;
+
+. /kaa/configure-kaa.sh &&
+service kaa-node start &
 . /kaa/tail-node.sh
+
 /bin/bash
