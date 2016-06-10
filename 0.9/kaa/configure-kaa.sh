@@ -5,7 +5,6 @@
 
 # Check if JDBC host:port + DB name are provided, use defaults otherwise
 [ -n "$JDBC_HOST" ] || JDBC_HOST="localhost"
-[ -n "$JDBC_PORT" ] || JDBC_PORT="3306"
 [ -n "$JDBC_DB_NAME" ] || JDBC_DB_NAME="kaa"
 
 # Determine JDBC url and driver
@@ -16,6 +15,7 @@ then
   $SQL_PROVIDER_NAME="mysql:failover"
   $HIBERNATE_DIALECT="org.hibernate.dialect.MySQL5InnoDBDialect"
   $JDBC_DRIVER_CLASSNAME="org.mariadb.jdbc.Driver"
+  [ -n "$JDBC_PORT" ] || JDBC_PORT="3306"
   $JDBC_URL="jdbc:mysql:failover://${JDBC_HOST}:${JDBC_PORT}/${JDBC_DB_NAME}"
 
 elif [ $SQL_PROVIDER_NAME == "postgresql" ]
@@ -24,6 +24,7 @@ then
   $SQL_PROVIDER_NAME="postgresql"
   $HIBERNATE_DIALECT="org.hibernate.dialect.PostgreSQL82Dialect"
   $JDBC_DRIVER_CLASSNAME="org.postgresql.Driver"
+[ -n "$JDBC_PORT" ] || JDBC_PORT="5432"
   $JDBC_URL="jdbc:postgresql://${JDBC_HOST}:${JDBC_PORT}/${JDBC_DB_NAME}"
 
 else
