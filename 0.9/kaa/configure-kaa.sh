@@ -9,6 +9,7 @@
 [ -n "$JDBC_DB_NAME" ] || JDBC_DB_NAME="kaa"
 
 # Determine JDBC url and driver
+# SQL_PROVIDER_NAME is a mandatory environment variable
 if [ $SQL_PROVIDER_NAME == "mariadb" ]
 then
 
@@ -93,6 +94,8 @@ NOSQL_DB_PROVIDER_NAME_DEFAULT="mongodb"
 cat /usr/lib/kaa-node/conf/nosql-dao.properties.template | sed \
   -e "s|{{NOSQL_DB_PROVIDER_NAME}}|${NOSQL_DB_PROVIDER_NAME:-$NOSQL_DB_PROVIDER_NAME_DEFAULT}|g" \
    > /usr/lib/kaa-node/conf/nosql-dao.properties
+
+## TODO (next): more configurable settings
 
 # > kaa-node.properties
 [ -n "$ZOOKEEPER_NODE_LIST" ] || ZOOKEEPER_NODE_LIST="localhost:2181"
