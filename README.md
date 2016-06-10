@@ -16,12 +16,14 @@ I suggest you first checkout Kaa's official installation guide before using this
 In order to use this image, you will need to provide the following dependencies:
 
 - Zookeeper 3.4.5
-- MariaDB 5.5 <i>OR</i> PostgreSQL 9.4
-- MongoDB 2.6.9 OR Cassandra 2.2.5
+- MariaDB 5.5 <b>||</b> PostgreSQL 9.4
+- MongoDB 2.6.9 <b>||</b> Cassandra 2.2.5
 
 <b>Note 1:</b> <i>It is highly recommended to use the versions specified above! No support will be provided if you decide to use their latest versions.</i>
 
 <b>Note 2:</b> <i>I have not tested this image with Cassandra, but environment variables are all available. Contributions via pull-requests are highly appreciated!</i>
+
+<b>Note 3:</b> <u>Anything within the "develop" branch of this repository has not yet been fully tested.</u>
 
 ## Get the image
 
@@ -42,7 +44,7 @@ cburr25/kaa:0.9.0
 <b>(2)</b> Write up a Docker environment file to configure your server, see example-env.dockerenv. Some available environment variables are:
 
 | VARIABLE         		       	|   DEFAULT					| NOTE / POSSIBLE VALUES
-| -----------------------------	|--------------------------	|
+| -----------------------------	|--------------------------	| ----------------------------
 | ZOOKEEPER_NODE_LIST			| localhost:2181			| <i>comma separated list</i>
 | 								| 							|
 | SQL_PROVIDER_NAME				| <b>null: mandatory!</b>	| mariadb , postgresql
@@ -51,7 +53,7 @@ cburr25/kaa:0.9.0
 | JDBC_USERNAME					| sqladmin					| 
 | JDBC_PASSWORD					| admin						|
 | JDBC_DB_NAME					| kaa 						| 
-								| 
+								| 							| 
 | CASSANDRA_CLUSTER_NAME		| Kaa Cluster 				| 
 | CASSANDRA_KEYSPACE_NAME		| kaa 						| 
 | CASSANDRA_NODE_LIST			| localhost:9042 			| <i>comma separated list</i>
