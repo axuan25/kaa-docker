@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Christopher Burroughs <chris@xmight.com>
 ENV DEBIAN_FRONTEND noninteractive
 
