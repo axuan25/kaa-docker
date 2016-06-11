@@ -1,4 +1,4 @@
-# Run Kaa IoT using PostgreSQL and MongoDB
+# Run Kaa IoT using MariaDB and MongoDB
 
 version: '2'
 
@@ -16,18 +16,18 @@ services:
     volumes:
       - mongo-data:/data/db
   jdbc:
-    image: postgres:9.4
+    image: mariadb:5.5
     networks:
       - back-tier
     volumes:
-      - jdbc-data:/var/lib/postgresql/data
-    env_file: postgres-dev.env
+      - jdbc-data:/var/lib/mysql
+    env_file: mariadb-dev.env
   kaa:
     image: cburr25/kaa:0.9.0
     # build: .
-    env_file: kaa-dev.env
+    env_file: ../kaa-dev.env
     environment:
-      - SQL_PROVIDER_NAME=postgresql
+      - SQL_PROVIDER_NAME=mariadb
     depends_on:
       - zookeeper
       - mongo
@@ -43,9 +43,9 @@ services:
       - "9999:9999"
 networks:
   back-tier:
-    driver: bridge # overlay for Swarm
+    driver: bridge # overlay for Swarm (unreleased update)
   front-tier:
-    driver: bridge # overlay for Swarm
+    driver: bridge # overlay for Swarm (unreleased update)
 volumes:
   jdbc-data:
   mongo-data:
