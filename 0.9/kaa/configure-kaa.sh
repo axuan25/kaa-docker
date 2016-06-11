@@ -13,7 +13,7 @@
 if [ $SQL_PROVIDER_NAME = "mariadb" ]
 then
 
-  echo -e "Using MariaDB as SQL provider.\n"
+  echo -e "Using MariaDB as SQL provider."
   SQL_PROVIDER_NAME="mysql:failover"
   HIBERNATE_DIALECT="org.hibernate.dialect.MySQL5InnoDBDialect"
   JDBC_DRIVER_CLASSNAME="org.mariadb.jdbc.Driver"
@@ -23,7 +23,7 @@ then
 elif [ $SQL_PROVIDER_NAME = "postgresql" ]
 then
 
-  echo -e "Using PostgreSQL as SQL provider.\n"
+  echo -e "Using PostgreSQL as SQL provider."
   SQL_PROVIDER_NAME="postgresql"
   HIBERNATE_DIALECT="org.hibernate.dialect.PostgreSQL82Dialect"
   JDBC_DRIVER_CLASSNAME="org.postgresql.Driver"
@@ -31,7 +31,7 @@ then
   JDBC_URL="jdbc:postgresql://${JDBC_HOST}:${JDBC_PORT}/${JDBC_DB_NAME}"
 
 else
-  echo -e "\nIncorrect SQL provider name: '${SQL_PROVIDER_NAME}'\nValid options: 'mariadb' , 'postgresql'\nConfiguration exiting now...\n"
+  echo -e "\nIncorrect SQL provider name: '${SQL_PROVIDER_NAME}'\nValid options: 'mariadb' , 'postgresql'\nConfiguration exiting now..."
   exit 1
 fi
 

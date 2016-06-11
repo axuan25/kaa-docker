@@ -1,4 +1,5 @@
-# (description)
+# Run Kaa IoT using PostgreSQL and MongoDB
+
 version: '2'
 
 services:
@@ -22,8 +23,8 @@ services:
       - jdbc-data:/var/lib/postgresql/data
     env_file: postgres-dev.env
   kaa:
-    # image: cburr25/kaa:0.9.0
-    build: .
+    image: cburr25/kaa:0.9.0
+    # build: .
     env_file: kaa-dev.env
     environment:
       - SQL_PROVIDER_NAME=postgresql

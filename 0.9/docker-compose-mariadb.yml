@@ -1,4 +1,5 @@
-# (description)
+# Run Kaa IoT using MariaDB and MongoDB
+
 version: '2'
 
 services:

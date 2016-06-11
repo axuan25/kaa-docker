@@ -16,14 +16,12 @@ I suggest you first checkout Kaa's official installation guide before using this
 In order to use this image, you will need to provide the following dependencies:
 
 - Zookeeper 3.4.5
-- MariaDB 5.5 <b>||</b> PostgreSQL 9.4
-- MongoDB 2.6.9 <b>||</b> Cassandra 2.2.5
+- MariaDB 5.5 <b><i>or</i></b> PostgreSQL 9.4
+- MongoDB 3.2.6 <b><i>or</i></b> Cassandra 2.2.5
 
-<b>Note 1:</b> <i>It is highly recommended to use the versions specified above! No support will be provided if you decide to use their latest versions.</i>
+<i>It is recommended to use the versions specified above. Try later versions at your own risk!</i>
 
-<b>Note 2:</b> <i>I have not tested this image with Cassandra, but environment variables are all available. Contributions via pull-requests are highly appreciated!</i>
-
-<b>Note 3:</b> <u>Anything within the "develop" branch of this repository has not yet been fully tested.</u>
+<u>Note:</u> <u>Anything within the "develop" branch of this repository has not yet been fully tested.</u>
 
 ## Get the image
 
