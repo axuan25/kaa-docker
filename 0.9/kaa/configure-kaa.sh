@@ -9,26 +9,29 @@
 
 # Determine JDBC url and driver
 # SQL_PROVIDER_NAME is a mandatory environment variable
-if [ $SQL_PROVIDER_NAME == "mariadb" ]
+[ -n "$SQL_PROVIDER_NAME" ] || SQL_PROVIDER_NAME="NULL"
+if [ $SQL_PROVIDER_NAME = "mariadb" ]
 then
 
-  $SQL_PROVIDER_NAME="mysql:failover"
-  $HIBERNATE_DIALECT="org.hibernate.dialect.MySQL5InnoDBDialect"
-  $JDBC_DRIVER_CLASSNAME="org.mariadb.jdbc.Driver"
+  echo -e "Using MariaDB as SQL provider.\n"
+  SQL_PROVIDER_NAME="mysql:failover"
+  HIBERNATE_DIALECT="org.hibernate.dialect.MySQL5InnoDBDialect"
+  JDBC_DRIVER_CLASSNAME="org.mariadb.jdbc.Driver"
   [ -n "$JDBC_PORT" ] || JDBC_PORT="3306"
-  $JDBC_URL="jdbc:mysql:failover://${JDBC_HOST}:${JDBC_PORT}/${JDBC_DB_NAME}"
+  JDBC_URL="jdbc:mysql:failover://${JDBC_HOST}:${JDBC_PORT}/${JDBC_DB_NAME}"
 
-elif [ $SQL_PROVIDER_NAME == "postgresql" ]
+elif [ $SQL_PROVIDER_NAME = "postgresql" ]
 then
 
-  $SQL_PROVIDER_NAME="postgresql"
-  $HIBERNATE_DIALECT="org.hibernate.dialect.PostgreSQL82Dialect"
-  $JDBC_DRIVER_CLASSNAME="org.postgresql.Driver"
-[ -n "$JDBC_PORT" ] || JDBC_PORT="5432"
-  $JDBC_URL="jdbc:postgresql://${JDBC_HOST}:${JDBC_PORT}/${JDBC_DB_NAME}"
+  echo -e "Using PostgreSQL as SQL provider.\n"
+  SQL_PROVIDER_NAME="postgresql"
+  HIBERNATE_DIALECT="org.hibernate.dialect.PostgreSQL82Dialect"
+  JDBC_DRIVER_CLASSNAME="org.postgresql.Driver"
+  [ -n "$JDBC_PORT" ] || JDBC_PORT="5432"
+  JDBC_URL="jdbc:postgresql://${JDBC_HOST}:${JDBC_PORT}/${JDBC_DB_NAME}"
 
 else
-  echo "Incorrect SQL provider name: '${SQL_PROVIDER_NAME}'\nValid options: 'mariadb' , 'postgresql'\nConfiguration exiting now!"
+  echo -e "\nIncorrect SQL provider name: '${SQL_PROVIDER_NAME}'\nValid options: 'mariadb' , 'postgresql'\nConfiguration exiting now...\n"
   exit 1
 fi
 
@@ -74,7 +77,7 @@ cat /usr/lib/kaa-node/conf/postgresql-dao.properties.template | sed \
 cat /usr/lib/kaa-node/conf/common-dao-cassandra.properties.template | sed \
   -e "s|{{CASSANDRA_CLUSTER_NAME}}|${CASSANDRA_CLUSTER_NAME:-Kaa Cluster}|g" \
   -e "s|{{CASSANDRA_KEYSPACE_NAME}}|${CASSANDRA_KEYSPACE_NAME:-kaa}|g" \
-  -e "s|{{CASSANDRA_NODE_LIST}}|${CASSANDRA_NODE_LIST|g" \
+  -e "s|{{CASSANDRA_NODE_LIST}}|${CASSANDRA_NODE_LIST}|g" \
   -e "s|{{CASSANDRA_USE_SSL}}|${CASSANDRA_USE_SSL:-false}|g" \
   -e "s|{{CASSANDRA_USE_JMX}}|${CASSANDRA_USE_JMX:-true}|g" \
   -e "s|{{CASSANDRA_USE_CREDENTIALS}}|${CASSANDRA_USE_CREDENTIALS:-false}|g" \
@@ -95,8 +98,6 @@ NOSQL_DB_PROVIDER_NAME_DEFAULT="mongodb"
 cat /usr/lib/kaa-node/conf/nosql-dao.properties.template | sed \
   -e "s|{{NOSQL_DB_PROVIDER_NAME}}|${NOSQL_DB_PROVIDER_NAME:-$NOSQL_DB_PROVIDER_NAME_DEFAULT}|g" \
    > /usr/lib/kaa-node/conf/nosql-dao.properties
-
-## TODO (next): more configurable settings
 
 # > kaa-node.properties
 [ -n "$ZOOKEEPER_NODE_LIST" ] || ZOOKEEPER_NODE_LIST="localhost:2181"

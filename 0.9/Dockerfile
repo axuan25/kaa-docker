@@ -42,6 +42,6 @@ EXPOSE 8080 9888 9889 9997 9999
 VOLUME ["/var/log/kaa", "/usr/lib/kaa-node/conf"]
 
 # Make kaa sudoer
-RUN sudo echo 'kaa     ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+RUN echo 'kaa     ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 ENTRYPOINT ["/kaa/container-start.sh"]
