@@ -7,13 +7,13 @@ If you don't know about Kaa, check out their home page: http://www.kaaproject.or
 
 "Kaa is a feature-rich, open-source IoT middleware platform for rapid development of the Internet of Things solutions, IoT applications, and smart products."
 
-## Installation requirements
+<hr />
 
 I suggest you first checkout Kaa's official installation guide before using this image:
 
 -> http://docs.kaaproject.org/display/KAA/Installation+guide
 
-In order to use this image, you will need to provide the following dependencies:
+Kaa IoT requires the following dependencies to run:
 
 - Zookeeper 3.4.5
 - MariaDB 5.5 <b><i>or</i></b> PostgreSQL 9.4
@@ -23,23 +23,40 @@ In order to use this image, you will need to provide the following dependencies:
 
 <u>Note:</u> <u>Anything within the "develop" branch of this repository has not yet been fully tested.</u>
 
-## Get the image
 
-<b>Docker hub -></b> 
+## Quick and <b>easy</b> run
+
+I have provided two examples runs using docker-compose. Simply run <b>launch-laa.sh</b> in either:
+
+<i>Using MariaDB + MongoDB:</i>
+- examples/using-compose/<b>mariadb-mongodb</b>/
+
+<i>Using PostgreSQL + MongoDB:</i>
+- examples/using-compose/<b>postgresql-mongodb</b>/
+
+Running a single command, you will easily deploy a single-node Kaa IoT server. <b><i>Unreleased:<b> easy cluster deployment!</b>
+
+## Run-it-yourself (RIY)
+
+Obtain the image in two ways:
+
+<b>Docker hub (recommended)</b> 
 
 cburr25/kaa:0.9.0
 
-<b>Docker build -></b>
+<b>Docker build</b>
 
-0. Download Kaa's debian packages at: http://www.kaaproject.org/download-kaa/ and place them inside 'install/deb/'
+1. Download Kaa's debian packages at: http://www.kaaproject.org/download-kaa/ and place them inside 'install/deb/'
 
-1. Build this image (build.sh for your convenience)
+2. Build this image (build.sh for your convenience)
 
-## Quick run
+Then follow these steps to run the image:
 
-<b>(1)</b> Run Zookeeper, MariaDB/PostgreSQL and MongoDB/Cassandra
+<b>(1)</b> Run Zookeeper (3.4.8), MariaDB (5.5)/PostgreSQL (9.4) and MongoDB (3.2.6)/Cassandra (2.2.5)
 
-<b>(2)</b> Write up a Docker environment file to configure your server, see example-env.dockerenv. Some available environment variables are:
+<b>(2)</b> Write up a Docker environment file to configure your server, see <i>examples/using-compose/kaa-example.env</i>
+
+<u>List of available environment variables:</u>
 
 | VARIABLE         		       	|   DEFAULT					| NOTE / POSSIBLE VALUES
 | -----------------------------	|--------------------------	| ----------------------------
@@ -69,7 +86,7 @@ cburr25/kaa:0.9.0
 
 <b>(3)</b> Run this image, link the containers however you want. <i>See 'docker-run-kaa-0.9.sh' for an example.</i>
 
-<b><u>UPCOMING UPDATE:</u></b> A more complete set of examples will be included soon, including different flavors of docker-compose files. Watch out for updates!
+<b><u>UPCOMING UPDATE:</u></b> A more complete set of examples will be included soon, including running with Cassandra and easy cluster deployment. <b>Watch out for updates!</b>
 
 ## Logs
 
@@ -77,7 +94,7 @@ If you run your Docker container as a daemon, you won't see its output. That's o
 
 $ docker exec <container-name> tail -f /var/log/kaa/kaa-node.log
 
-Or simply run the shortcut script 'view-kaa-node-logs.sh' !
+Or simply run the shortcut script 'view-kaa-node-logs.sh' in the examples !
 
 ## Notes
 

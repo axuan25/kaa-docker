@@ -1,7 +1,8 @@
 # Run Kaa IoT using PostgreSQL and MongoDB
 
-version: '2'
+# Note: you may ignore the Postgres error resembling: "ERROR:  constraint "...." of relation "...." does not exist"
 
+version: '2'
 services:
   jdbc:
     image: postgres:9.4
@@ -9,7 +10,7 @@ services:
       - back-tier
     volumes:
       - jdbc-data:/var/lib/postgresql/data/kaa-pgdata
-    env_file: postgres-dev.env
+    env_file: postgres-example.env
     environment:
       - PGDATA=/var/lib/postgresql/data/kaa-pgdata # Fixes FS volume issues
   zookeeper:
@@ -27,7 +28,7 @@ services:
   kaa:
     image: cburr25/kaa:0.9.0
     # build: .
-    env_file: ../kaa-dev.env
+    env_file: ../kaa-example.env
     environment:
       - SQL_PROVIDER_NAME=postgresql
     depends_on:
