@@ -1,6 +1,4 @@
-Greetings,
-
-Thanks for checking out this repository. You will find here an easy-to-use Docker image to launch a single-node Kaa server in just a few clicks.
+Greetings, and thanks for checking out this repository. You will find here an easy-to-use Docker image to launch a single-node Kaa server in just a few clicks.
 If you don't know about Kaa, check out their home page: http://www.kaaproject.org.
 
 ![](http://www.kaaproject.org/wp-content/themes/jupiter/images/logo-kaa-with-eyebrows-01.svg?cd593a)
@@ -23,6 +21,14 @@ Kaa IoT requires the following dependencies to run:
 
 <u>Note:</u> <u>Anything within the "develop" branch of this repository has not yet been fully tested.</u>
 
+<hr />
+
+## Most recent updates:
+<i>
+- Added docker-compose examples for MariaDB and PostgreSQL
+- Added script to wait for JDBC before starting kaa-node service
+- Updated Dockerfile to include PostgreSQL driver
+</i>
 
 ## Quick and <b>easy</b> run
 
@@ -34,7 +40,7 @@ I have provided two examples runs using docker-compose. Simply run <b>launch-laa
 <i>Using PostgreSQL + MongoDB:</i>
 - examples/using-compose/<b>postgresql-mongodb</b>/
 
-Running a single command, you will easily deploy a single-node Kaa IoT server. <b><i>Unreleased:<b> easy cluster deployment!</b>
+Running a single command, you will easily deploy a single-node Kaa IoT server. <b><i>Unreleased:</b> easy cluster deployment!</i>
 
 ## Run-it-yourself (RIY)
 
