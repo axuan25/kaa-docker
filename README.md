@@ -52,7 +52,7 @@ cburr25/kaa:0.9.0
 
 <b>Docker build</b>
 
-1. Download Kaa's debian packages at: http://www.kaaproject.org/download-kaa/ and place them inside 'install/deb/'
+1. Download Kaa's debian package at: http://www.kaaproject.org/download-kaa/ and place it inside 'install/deb/'
 
 2. Build this image (build.sh for your convenience)
 
