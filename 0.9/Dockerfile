@@ -48,4 +48,4 @@ VOLUME ["/var/log/kaa", "/usr/lib/kaa-node/conf"]
 # Make kaa sudoer
 RUN echo 'kaa     ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
-ENTRYPOINT ["/kaa/container-start.sh"]
+ENTRYPOINT ["/kaa/docker-entry.sh"]
