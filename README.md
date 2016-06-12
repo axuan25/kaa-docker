@@ -32,7 +32,7 @@ Kaa IoT requires the following dependencies to run:
 
 ## Quick and <b>easy</b> run
 
-I have provided two examples runs using docker-compose. Simply run <b>launch-laa.sh</b> in either:
+I have provided two examples runs using docker-compose. Simply run <b>launch-kaa.sh</b> in either:
 
 <i>Using MariaDB + MongoDB:</i>
 - examples/using-compose/<b>mariadb-mongodb</b>/
@@ -60,7 +60,7 @@ Then follow these steps to run the image:
 
 <b>(1)</b> Run Zookeeper (3.4.8), MariaDB (5.5)/PostgreSQL (9.4) and MongoDB (3.2.6)/Cassandra (2.2.5)
 
-<b>(2)</b> Write up a Docker environment file to configure your server, see <i>examples/using-compose/kaa-example.env</i>
+<b>(2)</b> Write up a Docker environment file to configure your server, see <i>examples/using-compose/kaa-example.env</i>. You <u>must</u> specify SQL_PROVIDER_NAME.
 
 <u>List of available environment variables:</u>
 
