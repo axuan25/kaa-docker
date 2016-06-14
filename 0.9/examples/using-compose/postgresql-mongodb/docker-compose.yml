@@ -4,12 +4,12 @@
 
 version: '2'
 services:
-  jdbc:
+  sql:
     image: postgres:9.4
     networks:
       - back-tier
     volumes:
-      - jdbc-data:/var/lib/postgresql/data/kaa-pgdata
+      - sql-data:/var/lib/postgresql/data/kaa-pgdata
     env_file: postgres-example.env
     environment:
       - PGDATA=/var/lib/postgresql/data/kaa-pgdata # Fixes FS volume issues
@@ -19,22 +19,23 @@ services:
       - back-tier
     volumes:
       - zookeeper-data:/tmp/zookeeper
-  mongo:
+  nosql:
     image: mongo:3.2
     networks:
       - back-tier
     volumes:
-      - mongo-data:/data/db
+      - nosql-data:/data/db
   kaa:
     image: cburr25/kaa:0.9.0
     # build: .
     env_file: ../kaa-example.env
     environment:
       - SQL_PROVIDER_NAME=postgresql
+      - SERVICE_WAIT_TIMEOUT=-1
     depends_on:
-      - jdbc
+      - sql
+      - nosql
       - zookeeper
-      - mongo
     networks:
       - back-tier
       - front-tier
@@ -50,6 +51,6 @@ networks:
   front-tier:
     driver: bridge # overlay for Swarm (unreleased update)
 volumes:
-  jdbc-data:
-  mongo-data:
+  sql-data:
+  nosql-data:
   zookeeper-data:

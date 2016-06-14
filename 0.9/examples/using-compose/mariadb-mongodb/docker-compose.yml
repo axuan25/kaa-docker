@@ -2,12 +2,12 @@
 
 version: '2'
 services:
-  jdbc:
+  sql:
     image: mariadb:5.5
     networks:
       - back-tier
     volumes:
-      - jdbc-data:/var/lib/mysql
+      - sql-data:/var/lib/mysql
     env_file: mariadb-example.env
   zookeeper:
     image: jplock/zookeeper:3.4.8
@@ -15,22 +15,23 @@ services:
       - back-tier
     volumes:
       - zookeeper-data:/tmp/zookeeper
-  mongo:
+  nosql:
     image: mongo:3.2
     networks:
       - back-tier
     volumes:
-      - mongo-data:/data/db
+      - nosql-data:/data/db
   kaa:
     image: cburr25/kaa:0.9.0
     # build: .
     env_file: ../kaa-example.env
     environment:
       - SQL_PROVIDER_NAME=mariadb
+      - SERVICE_WAIT_TIMEOUT=-1
     depends_on:
+      - sql
+      - nosql
       - zookeeper
-      - mongo
-      - jdbc
     networks:
       - back-tier
       - front-tier
@@ -46,6 +47,6 @@ networks:
   front-tier:
     driver: bridge # overlay for Swarm (unreleased update)
 volumes:
-  jdbc-data:
-  mongo-data:
+  sql-data:
+  nosql-data:
   zookeeper-data:

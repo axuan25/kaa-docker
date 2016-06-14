@@ -6,14 +6,15 @@ RUN apt-get update && apt-get -yqq install \
 		software-properties-common \
 		python-software-properties \
 		ca-certificates \
+		netcat \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
-## ORACLE JAVA 8
-# Auto-accept license
-RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
-RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
-RUN add-apt-repository ppa:webupd8team/java -y \
+## ORACLE JAVA 8 (auto-accept license)
+RUN \
+	echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections \
+	&& echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections \
+	&& add-apt-repository ppa:webupd8team/java -y \
 	&& apt-get update \
 	&& apt-get -yqq install \
 		oracle-java8-installer \
@@ -21,7 +22,10 @@ RUN add-apt-repository ppa:webupd8team/java -y \
 		software-properties-common \
 		python-software-properties \
 	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /var/cache/oracle-jdk8-installer
+
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # Copy compiled/downloaded Kaa .DEB file and install
 COPY install/deb/* /install/deb/

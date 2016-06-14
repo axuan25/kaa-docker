@@ -1,5 +1,4 @@
-Greetings, and thanks for checking out this repository. You will find here an easy-to-use Docker image to launch a single-node Kaa server in just a few clicks.
-If you don't know about Kaa, check out their home page: http://www.kaaproject.org.
+Greetings! Thanks for checking out this repository. You will find here an easy-to-use Docker image to launch a Kaa IoT server in a single command. If you don't already know about Kaa, check out their home page at: http://www.kaaproject.org.
 
 ![](http://www.kaaproject.org/wp-content/themes/jupiter/images/logo-kaa-with-eyebrows-01.svg?cd593a)
 
@@ -7,8 +6,18 @@ If you don't know about Kaa, check out their home page: http://www.kaaproject.or
 
 <hr />
 
-I suggest you first checkout Kaa's official installation guide before using this image:
+# Why use this image
 
+While the Kaa sandbox offers great use-case examples, this image will dramatically increase your development and deployment speed!
+
+- Extremely easy to configure
+- Easily switch between MariaDB and PostgreSQL <i>(no Postgres driver bug!)</i>
+- Easily switch between MongoDB and Cassandra
+- Kaa-node starts only after Zookeeper nodes, SQL and NoSQL containers are ready
+
+- <i>Cluster deployment will be implemented soon!</i>
+
+I suggest you first checkout Kaa's official installation guide before using this image:
 -> http://docs.kaaproject.org/display/KAA/Installation+guide
 
 Kaa IoT requires the following dependencies to run:
@@ -19,15 +28,13 @@ Kaa IoT requires the following dependencies to run:
 
 <i>It is recommended to use the versions specified above. Try later versions at your own risk!</i>
 
-<u>Note:</u> <u>Anything within the "develop" branch of this repository has not yet been fully tested.</u>
-
 <hr />
 
 ## Most recent updates:
 <i>
-- Added docker-compose examples for MariaDB and PostgreSQL
-- Added script to wait for JDBC before starting kaa-node service
-- Updated Dockerfile to include PostgreSQL driver
+- 06/14: Added health checks for Zookeeper and SQL <i>(unreleased: NoSQL health checks)</i>
+- 06/12: Added docker-compose examples for MariaDB and PostgreSQL
+- 06/12: Updated Dockerfile to include PostgreSQL driver
 </i>
 
 ## Quick and <b>easy</b> run
@@ -66,6 +73,8 @@ Then follow these steps to run the image:
 
 | VARIABLE         		       	|   DEFAULT					| NOTE / POSSIBLE VALUES
 | -----------------------------	|--------------------------	| ----------------------------
+| SERVICE_WAIT_TIMEOUT			| -1 (forever)				| Timeout while waiting for ZK/SQL/NoSQL to be ready, abort after that.<br>0: don't wait<br>-1: wait forever.
+|								|							|
 | ZOOKEEPER_NODE_LIST			| localhost:2181			| <i>comma separated list</i>
 | 								| 							|
 | SQL_PROVIDER_NAME				| <b>null: mandatory!</b>	| mariadb , postgresql
