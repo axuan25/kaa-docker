@@ -73,7 +73,7 @@ Then follow these steps to run the image:
 
 | VARIABLE         		       	|   DEFAULT					| NOTE / POSSIBLE VALUES
 | -----------------------------	|--------------------------	| ----------------------------
-| SERVICE_WAIT_TIMEOUT			| -1 (forever)				| Timeout while waiting for ZK/SQL/NoSQL to be ready, abort after that.<br>0: don't wait<br>-1: wait forever.
+| SERVICES_WAIT_TIMEOUT			| -1 (forever)				| Timeout while waiting for ZK/SQL/NoSQL to be ready, abort after that.<br>0: don't wait<br>-1: wait forever.
 |								|							|
 | ZOOKEEPER_NODE_LIST			| localhost:2181			| <i>comma separated list</i>
 | 								| 							|
