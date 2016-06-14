@@ -31,7 +31,7 @@ services:
     env_file: ../kaa-example.env
     environment:
       - SQL_PROVIDER_NAME=postgresql
-      - SERVICE_WAIT_TIMEOUT=-1
+      - SERVICES_WAIT_TIMEOUT=-1 # Wait foever for Zookeeper and SQL
     depends_on:
       - sql
       - nosql

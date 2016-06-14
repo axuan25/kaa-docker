@@ -5,7 +5,7 @@ touch /var/log/kaa/kaa-node.log;
 . /kaa/configure-kaa.sh || exit 1;
 echo "Kaa configured!"
 
-[[ $SERVICE_WAIT_TIMEOUT == ?(-)+([0-9]) ]] || SERVICE_WAIT_TIMEOUT=10;
+[[ $SERVICES_WAIT_TIMEOUT == ?(-)+([0-9]) ]] || SERVICES_WAIT_TIMEOUT=10;
 
 # Loop through all ZK nodes
 # Passes if one node is reachable
@@ -30,7 +30,7 @@ waitForZK() {
 	echo "Waiting for Zookeeper nodes: $ZOOKEEPER_NODE_LIST"
 
 	local I=0
-	until [ ! $SERVICE_WAIT_TIMEOUT -lt 0 ] && [ $I -gt $SERVICE_WAIT_TIMEOUT ]; do
+	until [ ! $SERVICES_WAIT_TIMEOUT -lt 0 ] && [ $I -gt $SERVICES_WAIT_TIMEOUT ]; do
 		isZKReachable && echo "Zookeeper is reachable, proceeding..." && return 0;
 			
 		sleep 1;
@@ -52,7 +52,7 @@ waitForSQL() {
 	echo "Waiting for SQL ($JDBC_HOST:$JDBC_PORT)"
 
 	local I=0
-	until [ ! $SERVICE_WAIT_TIMEOUT -lt 0 ] && [ $I -gt $SERVICE_WAIT_TIMEOUT ]; do
+	until [ ! $SERVICES_WAIT_TIMEOUT -lt 0 ] && [ $I -gt $SERVICES_WAIT_TIMEOUT ]; do
 		isSQLReachable && echo "SQL is reachable, proceeding..." && return 0;
 
 		sleep 1;
