@@ -27,7 +27,7 @@ services:
     env_file: ../kaa-example.env
     environment:
       - SQL_PROVIDER_NAME=mariadb
-      - SERVICES_WAIT_TIMEOUT=-1 # Wait foever for Zookeeper and SQL
+      - SERVICES_WAIT_TIMEOUT=-1 # Wait forever for Zookeeper and SQL
     depends_on:
       - sql
       - nosql
