@@ -4,7 +4,7 @@
 ## - Christopher Burroughs @ xMight Inc. <chris@xmight.com>
 
 # Check if JDBC host:port + DB name are provided, use defaults otherwise
-[ -n "$JDBC_HOST" ] || JDBC_HOST="sql"
+[ -n "$JDBC_HOST" ] || JDBC_HOST="localhost"
 [ -n "$JDBC_DB_NAME" ] || JDBC_DB_NAME="kaa"
 
 # Determine JDBC url and driver
