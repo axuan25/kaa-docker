@@ -9,7 +9,7 @@ echo "Kaa configured!"
 # > 0 seconds
 # = 0 don't wait
 # < 0 wait forever
-[[ $SERVICES_WAIT_TIMEOUT == ?(-)+([0-9]) ]] || SERVICES_WAIT_TIMEOUT=10;
+[[ $SERVICES_WAIT_TIMEOUT == ?(-)+([0-9]) ]] || SERVICES_WAIT_TIMEOUT=-1;
 
 # Loop through all ZK nodes
 # Passes if one node is reachable
