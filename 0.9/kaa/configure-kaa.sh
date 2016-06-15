@@ -95,6 +95,12 @@ cat /usr/lib/kaa-node/conf/common-dao-mongodb.properties.template | sed \
 
 # > nosql-dao.properties
 [ -n "$NOSQL_PROVIDER_NAME" ] || NOSQL_PROVIDER_NAME="mongodb"
+# Fail early if invalid provider name
+if ! [[ "$NOSQL_PROVIDER_NAME" =~ ^(mongodb|cassandra)$ ]];
+then
+  echo -e "\nIncorrect NoSQL provider name: '${NOSQL_PROVIDER_NAME}'\nValid options: 'mongodb' , 'cassandra'\nConfiguration exiting now...";
+  exit 1
+fi
 cat /usr/lib/kaa-node/conf/nosql-dao.properties.template | sed \
   -e "s|{{NOSQL_PROVIDER_NAME}}|${NOSQL_PROVIDER_NAME}|g" \
    > /usr/lib/kaa-node/conf/nosql-dao.properties
