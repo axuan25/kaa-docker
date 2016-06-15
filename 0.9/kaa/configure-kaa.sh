@@ -94,9 +94,9 @@ cat /usr/lib/kaa-node/conf/common-dao-mongodb.properties.template | sed \
    > /usr/lib/kaa-node/conf/common-dao-mongodb.properties
 
 # > nosql-dao.properties
-NOSQL_DB_PROVIDER_NAME_DEFAULT="mongodb"
+[ -n "$NOSQL_PROVIDER_NAME" ] || NOSQL_PROVIDER_NAME="mongodb"
 cat /usr/lib/kaa-node/conf/nosql-dao.properties.template | sed \
-  -e "s|{{NOSQL_DB_PROVIDER_NAME}}|${NOSQL_DB_PROVIDER_NAME:-$NOSQL_DB_PROVIDER_NAME_DEFAULT}|g" \
+  -e "s|{{NOSQL_PROVIDER_NAME}}|${NOSQL_PROVIDER_NAME}|g" \
    > /usr/lib/kaa-node/conf/nosql-dao.properties
 
 # > kaa-node.properties

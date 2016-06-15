@@ -5,6 +5,10 @@ touch /var/log/kaa/kaa-node.log;
 . /kaa/configure-kaa.sh || exit 1;
 echo "Kaa configured!"
 
+# Determine wait time:
+# > 0 seconds
+# = 0 don't wait
+# < 0 wait forever
 [[ $SERVICES_WAIT_TIMEOUT == ?(-)+([0-9]) ]] || SERVICES_WAIT_TIMEOUT=10;
 
 # Loop through all ZK nodes
@@ -63,9 +67,52 @@ waitForSQL() {
 	exit 1;
 }
 
-# Wait for ZK and SQL provider
-waitForZK
-waitForSQL
+# Loop through all Mongo nodes
+# Passes if one node is reachable
+isMongoReachable() {
+	OIFS="$IFS"
+	IFS="," read -r -a MDB_NODES <<< $MONGODB_NODE_LIST
+	for i in "${!MDB_NODES[@]}"
+	do
+		# echo "Reaching node #$i: ${MDB_NODES[i]}"
+		HOST=$(echo ${MDB_NODES[i]} | cut -f1 -d:)
+		PORT=$(echo ${MDB_NODES[i]} | cut -f2 -d:)
+		bash -c "cat < /dev/null > /dev/tcp/$HOST/$PORT" >/dev/null 2>/dev/null && return 0
+	done
+	IFS=OIFS;
+
+	# No MongoDB nodes were reachable
+	return 1;
+}
+
+# Exit if Mongo not reachable after $SERVICE_WAIT_TIMEOUT
+waitForMongo() {
+	echo "Waiting for MongoDB nodes: $MONGODB_NODE_LIST"
+
+	local I=0
+	until [ ! $SERVICES_WAIT_TIMEOUT -lt 0 ] && [ $I -gt $SERVICES_WAIT_TIMEOUT ]; do
+		isMongoReachable && echo "MongoDB is reachable, proceeding..." && return 0;
+			
+		sleep 1;
+		let I=I+1;
+	done;
+
+	echo "MongoDB is unreachable, aborting!";
+	exit 1;
+}
+
+if [ $SERVICES_WAIT_TIMEOUT -ne 0 ]
+then
+	# Wait for ZK
+	waitForZK
+	# Wait for MariaDB | PostgreSQL
+	waitForSQL
+	# Wait for MongoDB | Cassandra
+	if [[ "$NOSQL_PROVIDER_NAME" = "mongodb" ]]; then waitForMongo; fi;
+	# else waitForCassandra; fi; # (unreleased)
+else
+	echo "Not waiting for dependent services and immediately starting kaa-node."
+fi
 
 service kaa-node start &
 . /kaa/tail-node.sh

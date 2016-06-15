@@ -32,7 +32,8 @@ Kaa IoT requires the following dependencies to run:
 
 ## Most recent updates:
 <i>
-- 06/14: Added health checks for Zookeeper and SQL <i>(unreleased: NoSQL health checks)</i>
+- 06/16: Added health check for MongoDB
+- 06/14: Added health checks for Zookeeper, MariaDB/Postgres
 - 06/12: Added docker-compose examples for MariaDB and PostgreSQL
 - 06/12: Updated Dockerfile to include PostgreSQL driver
 </i>
@@ -97,7 +98,7 @@ Then follow these steps to run the image:
 | MONGODB_DB_NAME				| kaa 						| 
 | MONGODB_WRITE_CONCERN 		| acknowledged 				| 
 | 								| 							| 
-| NOSQL_DB_PROVIDER_NAME		| mongodb 					| mongodb , cassandra
+| NOSQL_PROVIDER_NAME			| mongodb 					| mongodb , cassandra
 
 <b>(3)</b> Run this image, link the containers however you want. <i>See 'docker-run-kaa-0.9.sh' for an example.</i>
 
