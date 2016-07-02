@@ -22,7 +22,7 @@ docker run \
 -p 9889:9889 \
 -p 9997:9997 \
 -p 9997:9997 \
-xmight/kaa:0.9.0
+cburr25/kaa:0.9.0
 
 # To view logs:
 # $ docker logs kaa
