@@ -32,10 +32,9 @@ Kaa IoT requires the following dependencies to run:
 
 ## Most recent updates:
 <i>
+- 07/03: MariaDB is default SQL provider.
 - 06/16: Added health check for MongoDB
 - 06/14: Added health checks for Zookeeper, MariaDB/Postgres
-- 06/12: Added docker-compose examples for MariaDB and PostgreSQL
-- 06/12: Updated Dockerfile to include PostgreSQL driver
 </i>
 
 ## Quick and <b>easy</b> run
@@ -60,9 +59,10 @@ cburr25/kaa:0.9.0
 
 <b>Docker build</b>
 
-1. Download Kaa's debian package at: http://www.kaaproject.org/download-kaa/ and place it inside 'install/deb/'
+1. Download Kaa's debian package at: http://www.kaaproject.org/download-kaa/ and place it inside 'install/', or anywhere else.
 
-2. Build this image (build.sh for your convenience)
+2. Build, specifying the debian package location: 
+$ docker build --build-arg setupfile=<KAA_DEB_PACKAGE> -t cburr25/kaa:0.9.0 .
 
 Then follow these steps to run the image:
 
@@ -78,7 +78,7 @@ Then follow these steps to run the image:
 |								|							|
 | ZOOKEEPER_NODE_LIST			| localhost:2181			| <i>comma separated list</i>
 | 								| 							|
-| SQL_PROVIDER_NAME				| <b>null: mandatory!</b>	| mariadb , postgresql
+| SQL_PROVIDER_NAME				| mariadb	 				| mariadb , postgresql
 | JDBC_HOST						| localhost					|
 | JDBC_PORT						| if mariadb: 3306<br>if postgresql: 5432 | 
 | JDBC_USERNAME					| sqladmin					| 
@@ -99,6 +99,17 @@ Then follow these steps to run the image:
 | MONGODB_WRITE_CONCERN 		| acknowledged 				| 
 | 								| 							| 
 | NOSQL_PROVIDER_NAME			| mongodb 					| mongodb , cassandra
+|								|							|
+| CONTROL_SERVER_ENABLED		| true						| true/false
+| BOOTSTRAP_SERVER_ENABLED		| true						| true/false
+| OPERATIONS_SERVER_ENABLED		| true						| true/false
+| THRIFT_HOST					| localhost					| 
+| THRIFT_PORT					| 9090						| 
+| ADMIN_PORT					| 8080						| 
+| SUPPORT_UNENCRYPTED_CONNECTION | true						| true/false
+| TRANSPORT_BIND_INTERFACE		| 0.0.0.0					| 
+| TRANSPORT_PUBLIC_INTERFACE	| localhost					| 
+| METRICS_ENABLED				| true 						| true/false
 
 <b>(3)</b> Run this image, link the containers however you want. <i>See 'docker-run-kaa-0.9.sh' for an example.</i>
 

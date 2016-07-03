@@ -9,7 +9,7 @@
 
 # Determine JDBC url and driver
 # SQL_PROVIDER_NAME is a mandatory environment variable
-[ -n "$SQL_PROVIDER_NAME" ] || SQL_PROVIDER_NAME="NULL"
+[ -n "$SQL_PROVIDER_NAME" ] || SQL_PROVIDER_NAME="mariadb"
 if [ $SQL_PROVIDER_NAME = "mariadb" ]
 then
 

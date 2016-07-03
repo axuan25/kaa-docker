@@ -28,8 +28,9 @@ RUN \
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # Copy compiled/downloaded Kaa .DEB file and install
-COPY install/deb/* /install/deb/
-RUN dpkg -i /install/deb/kaa-node.deb \
+ARG setupfile
+COPY ["$setupfile", "/install/kaa-node.deb"]
+RUN dpkg -i /install/kaa-node.deb \
 	&& rm -R /install/deb/ \
 	&& apt-get autoremove -y && apt-get clean
 
