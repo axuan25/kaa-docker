@@ -62,7 +62,7 @@ cburr25/kaa:0.9.0
 1. Download Kaa's debian package at: http://www.kaaproject.org/download-kaa/ and place it inside 'install/', or anywhere else.
 
 2. Build, specifying the debian package location: 
-$ docker build --build-arg setupfile=<KAA_DEB_PACKAGE> -t cburr25/kaa:0.9.0 .
+$ docker build --build-arg setupfile=&lt;KAA_DEB_PACKAGE&gt; -t cburr25/kaa:0.9.0 .
 
 Then follow these steps to run the image:
 
@@ -119,7 +119,7 @@ Then follow these steps to run the image:
 
 If you run your Docker container as a daemon, you won't see its output. That's okay, just run:
 
-$ docker exec <container-name> tail -f /var/log/kaa/kaa-node.log
+$ docker exec &lt;container-name&gt; tail -f /var/log/kaa/kaa-node.log
 
 Or simply run the shortcut script 'view-kaa-node-logs.sh' in the examples !
 
