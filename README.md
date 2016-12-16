@@ -1,3 +1,15 @@
+==============================================================
+
+*Version 0.10 and above:*
+
+This image is now the official Docker image for Kaa. If you are looking to deploy Kaa 0.10 and above, please visit the Kaa project documentation for Docker deployment:
+
+http://kaaproject.github.io/kaa/docs/v0.10.0/Administration-guide/System-installation/Docker-deployment/
+
+Of course, the Kaa team took my contribution and improved it a lot, it's therefore bound to be better than what I made! Enjoy!
+
+==============================================================
+
 Greetings! Thanks for checking out this repository. You will find here an easy-to-use Docker image to launch a Kaa IoT server in a single command. If you don't already know about Kaa, check out their home page at: http://www.kaaproject.org.
 
 ![](http://www.kaaproject.org/wp-content/themes/jupiter/images/logo-kaa-with-eyebrows-01.svg?cd593a)
